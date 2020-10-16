@@ -3,6 +3,10 @@ require('dotenv/config');
 const express = require('express');
 const routes = require('./routes');
 const cors = require('cors');
+const path = require('path');
+
+require('express-async-errors');
+require('./database');
 
 class App {
     constructor(){
@@ -18,6 +22,7 @@ class App {
     }
 
     routes(){
+        this.server.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
         this.server.use(routes);
     }
 }

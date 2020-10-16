@@ -2,7 +2,13 @@ const sequelize = require('sequelize');
 
 const databaseConfig = require('../config/database');
 
-const models = [];
+const Image = require('../app/models/Images');
+const Orphanage = require('../app/models/Orphanage');
+
+const models = [
+    Image,
+    Orphanage
+];
 
 class Database {
     constructor(){
@@ -17,3 +23,5 @@ class Database {
             .map(model => model.associate && model.associate(this.connection.models));
     }
 }
+
+module.exports = new Database();
